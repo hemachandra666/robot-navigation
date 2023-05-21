@@ -1,0 +1,20 @@
+<launch>
+  <!-- Start Gazebo simulation -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find robot_navigation)/worlds/my_world.world"/>
+  </include>
+
+  <!-- Start robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <!-- Start joint state publisher -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="true"/>
+  </node>
+
+  <!-- Start robot controller -->
+  <node name="robot_controller" pkg="robot_navigation" type="robot_controller.py" output="screen"/>
+
+  <!-- Start RViz visualization -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_navigation)/config/rviz_config.rviz"/>
+</launch>

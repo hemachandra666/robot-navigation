@@ -1,0 +1,23 @@
+# RViz configuration file
+
+# Set the fixed frame to the robot's base frame
+FixedFrame = /base_link
+
+ Add a RobotModel display to visualize the robot's model
+RobotModel:
+  Robot Description = $(find robot_navigation)/urdf/my_robot.urdf
+
+# Add a LaserScan display to visualize the laser scan data
+LaserScan:
+  Topic = /scan
+  Color Transformer = Intensity
+  Size (Pixels) = 2
+
+# Add a PoseArray display to visualize the path of the robot
+PoseArray:
+  Topic = /path
+  Color = 0.0, 1.0, 0.0
+  Alpha = 1.0
+  Pose Size = 0.1
+  Pose Arrow Length 0.2
+  Pose Arrow Shaft Diameter = 0.05
